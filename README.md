@@ -1,6 +1,6 @@
 # VerticaRailsAdapter
 
-Vertica adapter for ActiveRecord. This adapter gives you the power of ActiveRecord for your Vertica connection. This adapter uses the [vertica gem]: http://github.com/sprsquish/vertica 
+Vertica adapter for ActiveRecord. This adapter gives you the power of ActiveRecord for your Vertica connection. This adapter uses the [vertica gem](http://github.com/sprsquish/vertica)
 
 
 ## Installation
