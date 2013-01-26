@@ -51,21 +51,21 @@ module ActiveRecord
     def self.instantiate(record)
       record.stringify_keys!
       
-      sti_class = find_sti_class(record[inheritance_column])
-      record_id = sti_class.primary_key && record[sti_class.primary_key]
-      if ActiveRecord::IdentityMap.enabled? && record_id
-        if (column = sti_class.columns_hash[sti_class.primary_key]) && column.number?
-          record_id = record_id.to_i
-        end
-        if instance = IdentityMap.get(sti_class, record_id)
-          instance.reinit_with('attributes' => record)
-        else
-          instance = sti_class.allocate.init_with('attributes' => record)
-          IdentityMap.add(instance)
-        end
-      else
-        instance = sti_class.allocate.init_with('attributes' => record)
-      end
+      # sti_class = find_sti_class(record[inheritance_column])
+      # record_id = sti_class.primary_key && record[sti_class.primary_key]
+      # if ActiveRecord::IdentityMap.enabled? && record_id
+      #   if (column = sti_class.columns_hash[sti_class.primary_key]) && column.number?
+      #     record_id = record_id.to_i
+      #   end
+      #   if instance = IdentityMap.get(sti_class, record_id)
+      #     instance.reinit_with('attributes' => record)
+      #   else
+      #     instance = sti_class.allocate.init_with('attributes' => record)
+      #     IdentityMap.add(instance)
+      #   end
+      # else
+      #   instance = sti_class.allocate.init_with('attributes' => record)
+      # end
       
       instance
     end
