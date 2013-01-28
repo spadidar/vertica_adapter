@@ -66,8 +66,8 @@ module ActiveRecord
       # else
       #   instance = sti_class.allocate.init_with('attributes' => record)
       # end
-      
-      instance
+      # instance
+
     end
   end
   
