@@ -49,10 +49,10 @@ module ActiveRecord
 
 
     def self.instantiate(record)
-      record.stringify_keys!
-      
-      # sti_class = find_sti_class(record[inheritance_column])
-      # record_id = sti_class.primary_key && record[sti_class.primary_key]
+      record.stringify_keys!    
+      model = find_sti_class(record[inheritance_column]).allocate
+      model.init_with('attributes' => record)
+
       # if ActiveRecord::IdentityMap.enabled? && record_id
       #   if (column = sti_class.columns_hash[sti_class.primary_key]) && column.number?
       #     record_id = record_id.to_i
@@ -64,10 +64,10 @@ module ActiveRecord
       #     IdentityMap.add(instance)
       #   end
       # else
-      #   instance = sti_class.allocate.init_with('attributes' => record)
+      # Kernel.p record
       # end
-      # instance
 
+      model
     end
   end
   
