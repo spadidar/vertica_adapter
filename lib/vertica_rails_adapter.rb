@@ -4,5 +4,5 @@ require 'active_record/connection_adapters/vertica_adapter'
 require "activerecord-vertica-adapter"
 
 module VerticaRailsAdapter
-  # Your code goes here...
+
 end

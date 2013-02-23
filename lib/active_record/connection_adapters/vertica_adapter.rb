@@ -1,5 +1,4 @@
 require 'active_record/connection_adapters/abstract_adapter'
-require 'active_support/core_ext/kernel/requires'
 
 module ActiveRecord
   class Base
@@ -48,27 +47,28 @@ module ActiveRecord
     end  
 
 
-    def self.instantiate(record)
-      record.stringify_keys!    
-      model = find_sti_class(record[inheritance_column]).allocate
-      model.init_with('attributes' => record)
+    # def self.instantiate(record)
+    #   record.stringify_keys!    
+    #   model = find_sti_class(record[inheritance_column]).allocate
+    #   model.init_with('attributes' => record)
 
-      # if ActiveRecord::IdentityMap.enabled? && record_id
-      #   if (column = sti_class.columns_hash[sti_class.primary_key]) && column.number?
-      #     record_id = record_id.to_i
-      #   end
-      #   if instance = IdentityMap.get(sti_class, record_id)
-      #     instance.reinit_with('attributes' => record)
-      #   else
-      #     instance = sti_class.allocate.init_with('attributes' => record)
-      #     IdentityMap.add(instance)
-      #   end
-      # else
-      # Kernel.p record
-      # end
+    #   # if ActiveRecord::IdentityMap.enabled? && record_id
+    #   #   if (column = sti_class.columns_hash[sti_class.primary_key]) && column.number?
+    #   #     record_id = record_id.to_i
+    #   #   end
+    #   #   if instance = IdentityMap.get(sti_class, record_id)
+    #   #     instance.reinit_with('attributes' => record)
+    #   #   else
+    #   #     instance = sti_class.allocate.init_with('attributes' => record)
+    #   #     IdentityMap.add(instance)
+    #   #   end
+    #   # else
+    #   # Kernel.p record
+    #   # end
 
-      model
-    end
+    #   model
+    # end
+
   end
   
   module ConnectionAdapters
@@ -99,6 +99,7 @@ module ActiveRecord
       def reconnect!
         @connection.reset_connection
       end
+
       def reset
         reconnect!
       end
