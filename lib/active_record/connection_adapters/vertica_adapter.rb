@@ -138,7 +138,7 @@ module ActiveRecord
       end
 
       def columns(table_name, name = nil)#:nodoc:
-        sql = "SELECT * FROM columns WHERE table_name = #{quote_column_name(table_name)}"
+        sql = "SELECT * FROM columns WHERE table_name = #{quote_column_name(table_name)} AND table_schema = #{quote_column_name(schema_name)}"
 
         columns = []
         execute(sql, name){ |field| columns << VerticaColumn.new(field[:column_name],field[:column_default],field[:data_type],field[:is_nullable])}
